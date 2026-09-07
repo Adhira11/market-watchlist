@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import "./App.css";
+const API_URL = import.meta.env.VITE_API_URL || "${API_URL}";
 
 const availableStocks = [
   { symbol: "AAPL", name: "Apple Inc." },
@@ -94,7 +95,7 @@ function App() {
       }
 
       const response = await fetch(
-        "http://localhost:5000/api/stocks"
+        "${API_URL}/api/stocks"
       );
 
       const data = await response.json();
@@ -121,7 +122,7 @@ function App() {
       setRefreshing(true);
 
       const response = await fetch(
-        "http://localhost:5000/api/stocks/refresh"
+        "${API_URL}/api/stocks/refresh"
       );
 
       const data = await response.json();
@@ -159,7 +160,7 @@ function App() {
   const removeStock = async (symbol) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/stocks/${symbol}`,
+        `${API_URL}/api/stocks/${symbol}`,
         {
           method: "DELETE",
         }
@@ -208,7 +209,7 @@ function App() {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/stocks",
+        "${API_URL}/api/stocks",
         {
           method: "POST",
           headers: {
